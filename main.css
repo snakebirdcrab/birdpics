@@ -4,7 +4,7 @@ html {
 body {
   font-family: 'Helvetica';
   font-size: 24px;
-  color: #34495e;
+  color: #333;
   margin: 0;
   padding: 0;
   border: 0;
@@ -12,9 +12,14 @@ body {
   vertical-align: baseline;
   background: #f8f8fa;
 }
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #app-container {
   width: 100%;
-  min-width: 1200px;
+  min-width: 1190px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -33,7 +38,6 @@ body {
 #header .h1-text {
   font-size: 90px;
   font-weight: 100;
-  color: #333;
 }
 #gallery-container {
   position: fixed;
@@ -90,10 +94,6 @@ body {
 #greyout.visible {
   display: block;
 }
-.flex-center {
-  display: flex;
-  align-items: center;
-}
 #lightbox-container {
   position: fixed;
   bottom: 0;
@@ -107,7 +107,7 @@ body {
   position: absolute;
   top: 20px;
   right: 20px;
-  opacity: 0.6;
+  opacity: 0.4;
   cursor: pointer;
   z-index: 20;
 }
@@ -115,20 +115,20 @@ body {
   opacity: 1;
 }
 #lightbox-container #prev-button {
-  left: 30px;
+  left: 0px;
 }
 #lightbox-container #next-button {
-  right: 30px;
+  right: 0px;
 }
 #lightbox-container .arrow {
   position: fixed;
   top: 50%;
-  margin-top: -35px;
-  height: 70px;
+  margin-top: -40px;
   font-size: 70px;
   color: #fff;
   opacity: 0.7;
   cursor: pointer;
+  z-index: 20;
 }
 #lightbox-container .arrow:hover {
   opacity: 1;
@@ -141,14 +141,6 @@ body {
   left: 50%;
   margin-top: -350px;
   margin-left: -500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#lightbox-container #image-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 #lightbox-container #image-box .photo-container {
   height: 100%;
@@ -158,23 +150,23 @@ body {
   max-width: 1000px;
 }
 #lightbox-container #image-box .photo-container .title-box {
-  max-width: 100%;
-  font-size: 20px;
+  width: 100%;
   font-weight: 300;
   color: #fff;
   overflow: hidden;
   text-overflow: ellipsis;
   position: relative;
-  height: 1.2em;
-  margin-top: -1.2em;
-  white-spce: nowrap;
+  height: 1.6em;
+  margin-top: -1.6em;
+  white-space: nowrap;
   background: #000;
   opacity: 0.7;
   display: none;
 }
 #lightbox-container #image-box .photo-container .title-box .title {
   position: absolute;
-  top: 0;
+  margin: 4px 0px;
+  left: 10px;
 }
 #lightbox-container #image-box:hover .title-box {
   display: block;

@@ -1,21 +1,40 @@
+// colors
+med-grey = #333333
+light-grey = #999999
+off-white = #f8f8fa
+
+// font sizing
+base-font-size = 24px
+
+// basic app dimensions
+min-app-width = 1190px
+max-content-height = 700px
+max-content-width = 1000px
+
+
 html
   box-sizing border-box
 
-
 body
 	font-family 'Helvetica'
-	font-size 24px
-	color #34495E
+	font-size base-font-size
+	color med-grey
 	margin 0
 	padding 0
 	border 0
 	outline 0
 	vertical-align baseline
-	background #f8f8fa
+	background off-white
+
+.flex-center
+	display flex
+	justify-content center
+	align-items center
+
 
 #app-container
 	width 100%
-	min-width 1200px
+	min-width min-app-width
 	position fixed
 	top 0
 	bottom 0
@@ -29,12 +48,11 @@ body
 	display block
 	opacity .8
 	z-index 4
-	background #f8f8fa
+	background off-white
 
 	.h1-text
 		font-size 90px
 		font-weight 100
-		color #333333
 
 #gallery-container
 	position fixed
@@ -54,7 +72,7 @@ body
 		margin 0px auto
 		position relative
 		z-index 1
-		width 1190px
+		width min-app-width
 		height 100%
 
 		.thumb-block
@@ -71,10 +89,10 @@ body
 				align-items center
 			img
 				margin 0px auto
-				box-shadow 8px 8px 10px #999999
+				box-shadow 8px 8px 10px light-grey
 				&:hover
 					cursor pointer
-					box-shadow 12px 12px 10px #999999
+					box-shadow 12px 12px 10px light-grey
 					transform translate(-2px, -2px)
 					
 
@@ -90,9 +108,6 @@ body
 	&.visible
 		display block
 
-.flex-center
-	display flex
-	align-items center
 
 #lightbox-container
 	position fixed
@@ -107,7 +122,7 @@ body
 		position absolute
 		top 20px
 		right 20px
-		opacity .6
+		opacity .4
 		cursor pointer
 		z-index 20
 
@@ -115,67 +130,60 @@ body
 			opacity 1
 
 	#prev-button
-		left 30px
+		left 0px
 
 	#next-button
-		right 30px
+		right 0px
 
 	.arrow
 		position fixed
 		top 50%
-		margin-top -35px
-		height 70px
+		margin-top -40px
 		font-size 70px
 		color white
 		opacity .7
 		cursor pointer
+		z-index 20
 
 		&:hover
 			opacity 1
 
 	#content-box
-		height 700px
-		width 1000px
+		height max-content-height
+		width max-content-width
 		position fixed
 		top 50%
 		left 50%
-		margin-top -350px
-		margin-left -500px
-		display flex
-		justify-content center
-		align-items center
-
+		margin-top -(max-content-height / 2)
+		margin-left -(max-content-width / 2)
 
 	#image-box
-		display flex
-		justify-content center
-		align-items center
 
 		.photo-container
 			height 100%
 
 			img
-				max-height 700px
-				max-width 1000px	
+				max-height max-content-height
+				max-width max-content-width
 
 			.title-box
-				max-width 100%
-				font-size 20px
+				width 100%
 				font-weight 300
 				color white
 				overflow hidden
 				text-overflow ellipsis
 				position relative
-				height 1.2em
-				margin-top -1.2em
-				white-spce nowrap
+				height 1.6em
+				margin-top -1.6em
+				white-space nowrap
 				background black
 				opacity .7
 				display none
 
 				.title
 					position absolute
-					top 0
+					margin 4px 0px
+					left 10px
 
 		&:hover .title-box
 			display block
