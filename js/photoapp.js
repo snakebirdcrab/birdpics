@@ -3,11 +3,13 @@
 
 (function() {
 
+	// fetches and parses image data, controls main view state and main app data
 	class PhotoApp {
 		constructor(url, collection) {
 			this.url = 'https://api.flickr.com/services/rest/?api_key=aa4263c33573b94e44b541a6c61c2ae3&method=flickr.photos.search&tags=bird&per_page=100&format=json&nojsoncallback=1';
 			this.photoCollection = [];
 			this.parseFlickrData = this.parseFlickrData.bind(this);
+			this.onCloseClick = this.onCloseClick.bind(this);
 		}
 
 		init() {
@@ -32,6 +34,7 @@
 		}
 
 		parseFlickrData(resp) {
+			console.log(resp)
 			let _this =  this;
 			for (let [index, item] of resp.photos.photo.entries()) {		
 				let baseUrl = 'https://farm' + item.farm + '.staticflickr.com/' + item.server + '/' + item.id + '_' + item.secret;
@@ -51,9 +54,17 @@
 			document.getElementById('greyout').className += 'visible';
 			this.lightbox = new PhotoLightbox(photo_id);
 			this.lightbox.render();
+
+			document.getElementById('close-button').addEventListener('click', this.onCloseClick);
+		}
+
+		onCloseClick() {
+			this.lightbox.el.classList.remove('visible');
+			document.getElementById('greyout').classList.remove('visible');
 		}
 	}
 
+	// renders and handles events for a single photo thumbnail view
 	class PhotoThumb {
 
 		constructor(photoProps) {
@@ -75,6 +86,7 @@
 		}
 	}
 
+	// renders and handles UI events for the photo lightbox view
 	class PhotoLightbox {
 
 		constructor(init_id) {
@@ -82,11 +94,9 @@
 			this.el = document.getElementById('lightbox-container');
 			this.onNextClick = this.onNextClick.bind(this);
 			this.onPrevClick = this.onPrevClick.bind(this);
-			this.onCloseClick = this.onCloseClick.bind(this);
 
 			document.getElementById('prev-button').addEventListener('click', this.onPrevClick);
 			document.getElementById('next-button').addEventListener('click', this.onNextClick);
-			document.getElementById('close-button').addEventListener('click', this.onCloseClick);
 		}
 
 		render() {
@@ -115,11 +125,6 @@
 			}
 			else this.display_id -= 1;
 			this.render();
-		}
-
-		onCloseClick() {
-			this.el.classList.remove('visible');
-			document.getElementById('greyout').classList.remove('visible');
 		}
 	}
 	
