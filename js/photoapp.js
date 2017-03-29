@@ -34,19 +34,21 @@
 		}
 
 		parseFlickrData(resp) {
-			console.log(resp)
+
 			let _this =  this;
+
 			for (let [index, item] of resp.photos.photo.entries()) {		
 				let baseUrl = 'https://farm' + item.farm + '.staticflickr.com/' + item.server + '/' + item.id + '_' + item.secret;
+				if (item.secret !== '6c00ce162b') {
+					_this.photoCollection[index] = {id: index,
+										thumbnailLink: baseUrl + '_q.jpg', // 150x150 thumbnail squares
+										link: baseUrl + '_b.jpg', // specifies max 1024px on longest side
+										title: item.title
+									}
 
-				_this.photoCollection[index] = {id: index,
-									thumbnailLink: baseUrl + '_q.jpg', // 150x150 thumbnail squares
-									link: baseUrl + '_b.jpg', // specifies max 1024px on longest side
-									title: item.title
-								}
-
-				const photoThumb = new PhotoThumb(_this.photoCollection[index]);
-				photoThumb.render();
+					const photoThumb = new PhotoThumb(_this.photoCollection[index]);
+					photoThumb.render();
+				}
 			}
 		}
 		
